@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Palette */
+  --ink: #1a1410;
+  --ivory: #f7f0e3;
+  --ivory-dim: #ede4d2;
+  --vermillion: #c9432a;
+  --vermillion-dim: #a8391f;
+  --gold: #b8860b;
+  --gold-soft: #d4a72c;
+  --sage: #4a5d52;
+  --sage-soft: #6b8577;
+
+  /* Type */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+
+  --radius: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--ink);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  scroll-behavior: smooth;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--vermillion);
+  color: var(--ivory);
+}
+
+/* Focus visibility for accessibility */
+:focus-visible {
+  outline: 2px solid var(--gold-soft);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+
+/* The flame — signature element used as loading/active-state indicator */
+.flame {
+  display: inline-block;
+  width: 14px;
+  height: 18px;
+  position: relative;
+}
+.flame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--gold-soft) 0%, var(--vermillion) 55%, var(--vermillion-dim) 100%);
+  clip-path: path('M7 0C7 0 12 6 12 11C12 14.3 9.8 17 7 17C4.2 17 2 14.3 2 11C2 9.5 3 8 3.5 6.5C3.8 8 4.5 8.5 4.5 8.5C4 6 5.5 2 7 0Z');
+  animation: flicker 1.8s ease-in-out infinite;
+}
+@keyframes flicker {
+  0%, 100% { transform: scaleY(1) scaleX(1); }
+  25% { transform: scaleY(1.05) scaleX(0.96); }
+  50% { transform: scaleY(0.95) scaleX(1.03); }
+  75% { transform: scaleY(1.02) scaleX(0.98); }
+}
